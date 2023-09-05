@@ -11,9 +11,11 @@ class HomeController extends Controller
     {
         if(Auth::id()){
             $usertype = Auth()->user()->usertype;
+            $userpassword = Auth()->user()->password;
             if ($usertype == "admin") {
                 return view("home");
             }elseif ($usertype == "user") {
+                
                 return view("dashboard");
             }else {
                 return redirect()->back();
