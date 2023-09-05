@@ -10,6 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::id()){
+            $user = Auth::id();
             $usertype = Auth()->user()->usertype;
             $userpassword = Auth()->user()->password;
             if ($usertype == "admin") {
@@ -17,7 +18,9 @@ class HomeController extends Controller
             }elseif ($usertype == "user") {
                 
                 return view("dashboard");
-            }else {
+            }else if ($usertype == "unverified") {
+                return view("reset_password", compact('user'));
+            }else{
                 return redirect()->back();
             }
         }

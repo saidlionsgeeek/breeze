@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class , 'index'])->middleware(['auth', 'verified'])->name("home.index");
 
 Route::get('/home', [HomeController::class , 'index']);
+Route::post('/passwordReset/{user}', [UserController::class , 'reset'])->name("password.reset");
+Route::get('/passwordReset', [UserController::class , 'index'])->name("password.index");
+
 
 Route::post('/admin/store',[AdminController::class,"store"])->name("admin.store");
 
